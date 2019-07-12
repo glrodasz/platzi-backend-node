@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hapi/boom": "^7.4.2",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mongodb": "^3.2.7"
