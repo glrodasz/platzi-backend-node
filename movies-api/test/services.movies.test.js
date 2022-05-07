@@ -4,7 +4,8 @@ const proxyquire = require('proxyquire');
 const {
   MongoLibMock,
   getAllStub,
-  getStub
+  getStub,
+  createStub
 } = require('../utils/mocks/mongoLib');
 
 const { moviesMock } = require('../utils/mocks/movies');
@@ -53,4 +54,35 @@ describe('[ services / movies ]', function() {
       it('should return an empty object', function() {});
     });
   });
+
+  describe("#createMovie", () => {
+    describe("when the method is called", () => {
+      it("should call `mongo.DB.create` with the collection name and the `movie` object", async () => {
+        // Arrange
+        const movie = "pocahontas"
+        // const mongoDBCreateMock
+
+        // Act 
+        await moviesService.createMovie({ movie })
+
+        // Assert
+        assert.strictEqual(createStub.calledWith('movies', movie), true);
+      })
+    })
+
+    describe("when the method is called", () => {
+      it("should call return the movie id created", async () => {
+        // Arrange
+        const movie = "pocahontas"
+        const expected = "d2a4a062-d256-41bb-b1b2-9d915af6b75e"
+
+        // Act 
+        const result = await moviesService.createMovie({ movie })
+
+        // Assert
+        assert.deepEqual(result, expected);
+      })
+    })
+
+  })
 });
